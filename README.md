@@ -2,7 +2,7 @@
 
 Interactive cybersecurity portfolio focused on Web Application Security, Penetration Testing and Security Research.
 
-🔗 Live Demo: (https://vercel.com/kirito-akermans-projects/cyber-portfolio-26lm)](https://cyber-portfolio-26lm.vercel.app/)
+🔗 Live Demo: (https://cyber-portfolio-26lm.vercel.app/)
 
 ---
 
