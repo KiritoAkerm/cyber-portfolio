@@ -940,7 +940,9 @@ export default function Home() {
           </div>
 
           <div className="mt-8 flex gap-4">
-            <a href="#" className="px-6 py-2 bg-emerald-600 hover:bg-emerald-500 transition rounded-md font-medium shadow-lg shadow-emerald-600/50 hover:scale-105 transform">
+            <a href="/cv-enrique-garcia.pdf" 
+            download
+            className="px-6 py-2 bg-emerald-600 hover:bg-emerald-500 transition rounded-md font-medium shadow-lg shadow-emerald-600/50 hover:scale-105 transform">
               Download CV
             </a>
             <a href="https://www.linkedin.com/in/enrique-garcía-nates-martín" target="_blank" rel="noopener noreferrer" className="px-6 py-2 border border-emerald-600 hover:bg-emerald-600/20 transition rounded-md hover:scale-105 transform">
