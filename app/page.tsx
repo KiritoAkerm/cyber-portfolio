@@ -8,7 +8,7 @@ export default function Home() {
   const [hackerText, setHackerText] = useState("");
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [scannerPosition, setScannerPosition] = useState(0);
-  const [hexCode, setHexCode] = useState<Array<{id: number, x: number, y: number, code: string}>>([]);
+  const [hexCode, setHexCode] = useState<Array<{ id: number, x: number, y: number, code: string }>>([]);
   const [glitch, setGlitch] = useState(false);
   const [terminalLines, setTerminalLines] = useState<string[]>([]);
   const [accessStatus, setAccessStatus] = useState<'granted' | 'denied' | null>(null);
@@ -27,7 +27,7 @@ export default function Home() {
   const [miniBreach, setMiniBreach] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [unlockedSections, setUnlockedSections] = useState<Set<string>>(new Set());
-  const [firewalls, setFirewalls] = useState<Array<{id: number, x: number, y: number, width: number, height: number, opacity: number}>>([]);
+  const [firewalls, setFirewalls] = useState<Array<{ id: number, x: number, y: number, width: number, height: number, opacity: number }>>([]);
 
   // Función para desbloquear una sección permanentemente
   const unlockSection = (sectionId: string) => {
@@ -54,7 +54,7 @@ export default function Home() {
     if (loginStep === 'username') {
       const targetUsername = 'Job_Hunter';
       let currentIndex = 0;
-      
+
       const interval = setInterval(() => {
         if (currentIndex <= targetUsername.length) {
           setUsername(targetUsername.slice(0, currentIndex));
@@ -67,7 +67,7 @@ export default function Home() {
           }, 1000);
         }
       }, 100);
-      
+
       return () => clearInterval(interval);
     }
   }, [loginStep]);
@@ -77,7 +77,7 @@ export default function Home() {
     if (loginStep === 'password') {
       const targetPassword = 'SecurePass2026';
       let currentIndex = 0;
-      
+
       const interval = setInterval(() => {
         if (currentIndex <= targetPassword.length) {
           setPassword(targetPassword.slice(0, currentIndex));
@@ -90,7 +90,7 @@ export default function Home() {
           }, 1500);
         }
       }, 80);
-      
+
       return () => clearInterval(interval);
     }
   }, [loginStep]);
@@ -111,7 +111,7 @@ export default function Home() {
   // Live Scan
   useEffect(() => {
     if (loginStep !== 'authenticated') return;
-    
+
     const scanSteps = [
       'Initializing security scan...',
       'Checking portfolio integrity...',
@@ -122,37 +122,37 @@ export default function Home() {
       'No critical issues found.',
       'Scan complete. Status: SECURE'
     ];
-    
+
     let index = 0;
     const interval = setInterval(() => {
       setScanStatus(scanSteps[index]);
       index = (index + 1) % scanSteps.length;
     }, 3000);
-    
+
     return () => clearInterval(interval);
   }, [loginStep]);
 
   // Security Score updater
   useEffect(() => {
     if (loginStep !== 'authenticated') return;
-    
+
     const interval = setInterval(() => {
       setLastScan(prev => prev + 1);
       setSecurityScore(98 + Math.floor(Math.random() * 3));
     }, 5000);
-    
+
     return () => clearInterval(interval);
   }, [loginStep]);
 
   // Mini breach simulation (cada 3 minutos)
   useEffect(() => {
     if (loginStep !== 'authenticated') return;
-    
+
     const interval = setInterval(() => {
       setMiniBreach(true);
       setTimeout(() => setMiniBreach(false), 3000);
     }, 180000);
-    
+
     return () => clearInterval(interval);
   }, [loginStep]);
 
@@ -172,10 +172,10 @@ export default function Home() {
   useEffect(() => {
     const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
     const columns = 20;
-    
+
     const interval = setInterval(() => {
       setMatrixCode(
-        Array.from({ length: columns }, () => 
+        Array.from({ length: columns }, () =>
           chars[Math.floor(Math.random() * chars.length)]
         )
       );
@@ -195,7 +195,7 @@ export default function Home() {
       "bug bounty hunting..."
     ];
     let index = 0;
-    
+
     const interval = setInterval(() => {
       setHackerText(texts[index]);
       index = (index + 1) % texts.length;
@@ -238,7 +238,7 @@ export default function Home() {
   // Terminal líneas de código automáticas
   useEffect(() => {
     if (loginStep !== 'authenticated') return;
-    
+
     const commands = [
       "root@security:~# nmap -sV -sC 192.168.1.1",
       "[+] Port 80/tcp open",
@@ -272,7 +272,7 @@ export default function Home() {
   // Efecto de Access Granted/Denied aleatorio
   useEffect(() => {
     if (loginStep !== 'authenticated') return;
-    
+
     const interval = setInterval(() => {
       const random = Math.random();
       setAccessStatus(random > 0.7 ? 'granted' : 'denied');
@@ -293,7 +293,7 @@ export default function Home() {
   // Konami Code detector
   useEffect(() => {
     const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-    
+
     const handleKeyDown = (e: KeyboardEvent) => {
       setKonamiCode(prev => {
         const newCode = [...prev, e.key].slice(-10);
@@ -307,7 +307,7 @@ export default function Home() {
         return newCode;
       });
     };
-    
+
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
@@ -315,7 +315,7 @@ export default function Home() {
   // Partículas interactivas - SIN TRAILS, VELOCIDAD DE ATRACCIÓN REDUCIDA
   useEffect(() => {
     if (loginStep !== 'authenticated') return;
-    
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -325,8 +325,8 @@ export default function Home() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const particles: Array<{x: number, y: number, vx: number, vy: number}> = [];
-    const explosions: Array<{x: number, y: number, radius: number, opacity: number}> = [];
+    const particles: Array<{ x: number, y: number, vx: number, vy: number }> = [];
+    const explosions: Array<{ x: number, y: number, radius: number, opacity: number }> = [];
     const particleCount = 40;
     let mouseX = -1000;
     let mouseY = -1000;
@@ -356,7 +356,7 @@ export default function Home() {
         opacity: 1
       };
       setFirewalls(prev => [...prev, newFirewall]);
-      
+
       // Remover después de 3 segundos
       setTimeout(() => {
         setFirewalls(prev => prev.filter(f => f.id !== newFirewall.id));
@@ -380,7 +380,7 @@ export default function Home() {
           const dx = particle.x - other.x;
           const dy = particle.y - other.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          
+
           if (distance < 30) {
             nearbyCount++;
             clusterX += other.x;
@@ -391,7 +391,7 @@ export default function Home() {
         if (nearbyCount >= 8) {
           clusterX /= (nearbyCount + 1);
           clusterY /= (nearbyCount + 1);
-          
+
           explosions.push({
             x: clusterX,
             y: clusterY,
@@ -407,7 +407,7 @@ export default function Home() {
             const dx = p.x - clusterX;
             const dy = p.y - clusterY;
             const distance = Math.sqrt(dx * dx + dy * dy);
-            
+
             if (distance < 50) {
               const randomAngle = Math.random() * Math.PI * 2;
               const randomSpeed = 20 + Math.random() * 15;
@@ -444,7 +444,7 @@ export default function Home() {
         const dxMouse = mouseX - particle.x;
         const dyMouse = mouseY - particle.y;
         const distanceMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-        
+
         const attractionRadius = 200;
         if (distanceMouse < attractionRadius && distanceMouse > 0) {
           const attractionForce = (attractionRadius - distanceMouse) / attractionRadius;
@@ -472,7 +472,7 @@ export default function Home() {
         // Colisión con firewalls
         firewalls.forEach(fw => {
           if (particle.x > fw.x && particle.x < fw.x + fw.width &&
-              particle.y > fw.y && particle.y < fw.y + fw.height) {
+            particle.y > fw.y && particle.y < fw.y + fw.height) {
             // Rebote
             if (Math.abs(particle.x - fw.x) < 10 || Math.abs(particle.x - (fw.x + fw.width)) < 10) {
               particle.vx *= -1;
@@ -547,7 +547,7 @@ export default function Home() {
           <div className="w-96 space-y-4">
             <p className="text-emerald-500 font-mono text-sm">INITIALIZING SECURITY SYSTEMS...</p>
             <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-              <div 
+              <div
                 className="h-full bg-emerald-500 transition-all duration-300"
                 style={{ width: `${loadingProgress}%` }}
               />
@@ -555,14 +555,14 @@ export default function Home() {
             <p className="text-emerald-500 font-mono text-xs text-right">{loadingProgress}%</p>
           </div>
         )}
-        
+
         {loginStep === 'username' && (
           <div className="w-96 space-y-6">
             <div className="text-center mb-8">
               <h1 className="text-3xl font-bold text-emerald-400 font-mono mb-2">SECURE LOGIN</h1>
               <p className="text-zinc-500 text-sm">Portfolio Access Control</p>
             </div>
-            
+
             <div>
               <label className="block text-emerald-500 font-mono text-sm mb-2">Username:</label>
               <input
@@ -572,21 +572,21 @@ export default function Home() {
                 className="w-full bg-zinc-900 border border-emerald-600 rounded px-4 py-2 text-emerald-500 font-mono focus:outline-none focus:border-emerald-400"
               />
             </div>
-            
+
             <div className="flex items-center justify-center gap-2 text-emerald-500">
               <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
               <p className="text-xs font-mono">Auto-filling credentials...</p>
             </div>
           </div>
         )}
-        
+
         {loginStep === 'password' && (
           <div className="w-96 space-y-6">
             <div className="text-center mb-8">
               <h1 className="text-3xl font-bold text-emerald-400 font-mono mb-2">SECURE LOGIN</h1>
               <p className="text-zinc-500 text-sm">User: {username}</p>
             </div>
-            
+
             <div>
               <label className="block text-emerald-500 font-mono text-sm mb-2">Password:</label>
               <input
@@ -597,7 +597,7 @@ export default function Home() {
                 placeholder="••••••••"
               />
             </div>
-            
+
             <div className="flex items-center justify-center gap-2 text-emerald-500">
               <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
               <p className="text-xs font-mono">Authenticating...</p>
@@ -673,10 +673,10 @@ export default function Home() {
       </div>
 
       {/* Targeting system */}
-      <div 
+      <div
         className="fixed pointer-events-none z-40"
-        style={{ 
-          left: mouseCoords.x, 
+        style={{
+          left: mouseCoords.x,
           top: mouseCoords.y,
           transform: 'translate(-50%, -50%)'
         }}
@@ -724,7 +724,7 @@ export default function Home() {
       )}
 
       {/* Escáner vertical */}
-      <div 
+      <div
         className="fixed left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-30 pointer-events-none z-10"
         style={{ top: `${scannerPosition}%` }}
       />
@@ -732,11 +732,10 @@ export default function Home() {
       {/* ACCESS GRANTED/DENIED popup */}
       {accessStatus && (
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 animate-pulse">
-          <div className={`text-4xl font-bold font-mono px-12 py-6 rounded-lg border-4 ${
-            accessStatus === 'granted' 
-              ? 'text-green-500 border-green-500 bg-green-950/90' 
-              : 'text-red-500 border-red-500 bg-red-950/90'
-          } shadow-2xl`}>
+          <div className={`text-4xl font-bold font-mono px-12 py-6 rounded-lg border-4 ${accessStatus === 'granted'
+            ? 'text-green-500 border-green-500 bg-green-950/90'
+            : 'text-red-500 border-red-500 bg-red-950/90'
+            } shadow-2xl`}>
             {accessStatus === 'granted' ? '✓ ACCESS GRANTED' : '✗ ACCESS DENIED'}
           </div>
         </div>
@@ -751,12 +750,11 @@ export default function Home() {
         </div>
         <div className="font-mono text-xs space-y-1 overflow-hidden">
           {terminalLines.map((line, i) => (
-            <p key={i} className={`${
-              line.includes('[+]') ? 'text-green-500' :
+            <p key={i} className={`${line.includes('[+]') ? 'text-green-500' :
               line.includes('[!]') ? 'text-red-500' :
-              line.includes('[*]') ? 'text-blue-500' :
-              'text-emerald-500'
-            } animate-fade-in`}>
+                line.includes('[*]') ? 'text-blue-500' :
+                  'text-emerald-500'
+              } animate-fade-in`}>
               {line}
             </p>
           ))}
@@ -906,7 +904,7 @@ export default function Home() {
 
       {/* Contenido principal */}
       <main className="relative max-w-5xl mx-auto px-8 py-16 z-10">
-        
+
         <section className="mb-20">
           <h1 className={`text-5xl font-bold tracking-tight mb-4 text-emerald-400 ${glitch ? 'animate-glitch' : ''}`}>
             Enrique García-Nates
@@ -918,9 +916,9 @@ export default function Home() {
           </p>
 
           <p className="mt-6 max-w-2xl text-zinc-400 leading-relaxed">
-            Cybersecurity Analyst specialized in Web Application Security and 
-            Penetration Testing. Experience in vulnerability assessment, secure 
-            development practices, and technical reporting. Background in backend 
+            Cybersecurity Analyst specialized in Web Application Security and
+            Penetration Testing. Experience in vulnerability assessment, secure
+            development practices, and technical reporting. Background in backend
             development with strong interest in offensive security and bug bounty research.
           </p>
 
@@ -940,9 +938,9 @@ export default function Home() {
           </div>
 
           <div className="mt-8 flex gap-4">
-            <a href="/cv-enrique-garcia.pdf" 
-            download
-            className="px-6 py-2 bg-emerald-600 hover:bg-emerald-500 transition rounded-md font-medium shadow-lg shadow-emerald-600/50 hover:scale-105 transform">
+            <a href="/cv-enrique-garcia.pdf"
+              download
+              className="px-6 py-2 bg-emerald-600 hover:bg-emerald-500 transition rounded-md font-medium shadow-lg shadow-emerald-600/50 hover:scale-105 transform">
               Download CV
             </a>
             <a href="https://www.linkedin.com/in/enrique-garcía-nates-martín" target="_blank" rel="noopener noreferrer" className="px-6 py-2 border border-emerald-600 hover:bg-emerald-600/20 transition rounded-md hover:scale-105 transform">
@@ -958,7 +956,7 @@ export default function Home() {
           </h2>
 
           <div className="space-y-8">
-            <div 
+            <div
               className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:border-emerald-600 transition hover:shadow-lg hover:shadow-emerald-600/10 hover:scale-[1.02] transform overflow-hidden"
               onMouseEnter={() => unlockSection('exp-1')}
             >
@@ -969,7 +967,7 @@ export default function Home() {
                   <p className="font-mono text-zinc-500 text-xs mt-2">hover to decrypt</p>
                 </div>
               </div>
-              
+
               <h3 className="text-lg font-semibold">
                 Independent Security Research & Bug Bounty
               </h3>
@@ -982,7 +980,7 @@ export default function Home() {
               </ul>
             </div>
 
-            <div 
+            <div
               className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:border-emerald-600 transition hover:shadow-lg hover:shadow-emerald-600/10 hover:scale-[1.02] transform overflow-hidden"
               onMouseEnter={() => unlockSection('exp-2')}
             >
@@ -993,7 +991,7 @@ export default function Home() {
                   <p className="font-mono text-zinc-500 text-xs mt-2">hover to decrypt</p>
                 </div>
               </div>
-              
+
               <h3 className="text-lg font-semibold">
                 Backend / Full Stack Developer - Vlumex
               </h3>
@@ -1008,7 +1006,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div 
+            <div
               className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:border-emerald-600 transition hover:shadow-lg hover:shadow-emerald-600/10 hover:scale-[1.02] transform overflow-hidden"
               onMouseEnter={() => unlockSection('exp-3')}
             >
@@ -1019,7 +1017,7 @@ export default function Home() {
                   <p className="font-mono text-zinc-500 text-xs mt-2">hover to decrypt</p>
                 </div>
               </div>
-              
+
               <h3 className="text-lg font-semibold">
                 Cybersecurity Analyst - Diligize
               </h3>
@@ -1036,7 +1034,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div 
+            <div
               className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:border-emerald-600 transition hover:shadow-lg hover:shadow-emerald-600/10 hover:scale-[1.02] transform overflow-hidden"
               onMouseEnter={() => unlockSection('exp-4')}
             >
@@ -1047,7 +1045,7 @@ export default function Home() {
                   <p className="font-mono text-zinc-500 text-xs mt-2">hover to decrypt</p>
                 </div>
               </div>
-              
+
               <h3 className="text-lg font-semibold">
                 Cybersecurity Intern - Diligize
               </h3>
@@ -1059,7 +1057,7 @@ export default function Home() {
               </ul>
             </div>
 
-            <div 
+            <div
               className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:border-emerald-600 transition hover:shadow-lg hover:shadow-emerald-600/10 hover:scale-[1.02] transform overflow-hidden"
               onMouseEnter={() => unlockSection('exp-5')}
             >
@@ -1070,7 +1068,7 @@ export default function Home() {
                   <p className="font-mono text-zinc-500 text-xs mt-2">hover to decrypt</p>
                 </div>
               </div>
-              
+
               <h3 className="text-lg font-semibold">
                 Internship - Indra Sistemas S.A.
               </h3>
@@ -1090,7 +1088,7 @@ export default function Home() {
             Education
           </h2>
 
-          <div 
+          <div
             className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:border-emerald-600 transition hover:shadow-lg hover:shadow-emerald-600/10 hover:scale-[1.02] transform overflow-hidden"
             onMouseEnter={() => unlockSection('edu-1')}
           >
@@ -1101,7 +1099,7 @@ export default function Home() {
                 <p className="font-mono text-zinc-500 text-xs mt-2">hover to decrypt</p>
               </div>
             </div>
-            
+
             <h3 className="text-lg font-semibold">
               Cybersecurity Bootcamp - IronHack
             </h3>
@@ -1120,7 +1118,8 @@ export default function Home() {
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div 
+            {/* VulnHunter Pro */}
+            <div
               className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:border-emerald-600 transition hover:shadow-lg hover:shadow-emerald-600/10 hover:scale-[1.02] transform overflow-hidden"
               onMouseEnter={() => unlockSection('proj-1')}
             >
@@ -1131,13 +1130,13 @@ export default function Home() {
                   <p className="font-mono text-zinc-500 text-xs mt-2">hover to decrypt</p>
                 </div>
               </div>
-              
+
               <h3 className="text-lg font-semibold mb-3">
                 VulnHunter Pro
               </h3>
               <p className="text-zinc-400 mb-4">
-                Custom vulnerability scanning tool developed in Python to automate 
-                reconnaissance and detection of common web vulnerabilities (XSS, SQLi 
+                Custom vulnerability scanning tool developed in Python to automate
+                reconnaissance and detection of common web vulnerabilities (XSS, SQLi
                 patterns, misconfigurations). Published on GitHub.
               </p>
               <a href="https://lnkd.in/dRaAnkrt" target="_blank" rel="noopener noreferrer" className="text-emerald-500 hover:underline inline-flex items-center gap-2">
@@ -1145,7 +1144,8 @@ export default function Home() {
               </a>
             </div>
 
-            <div 
+            {/* ExploitServer - NUEVO */}
+            <div
               className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:border-emerald-600 transition hover:shadow-lg hover:shadow-emerald-600/10 hover:scale-[1.02] transform overflow-hidden"
               onMouseEnter={() => unlockSection('proj-2')}
             >
@@ -1156,17 +1156,22 @@ export default function Home() {
                   <p className="font-mono text-zinc-500 text-xs mt-2">hover to decrypt</p>
                 </div>
               </div>
-              
+
               <h3 className="text-lg font-semibold mb-3">
-                Custom Honeypot Environment
+                ExploitServer
               </h3>
-              <p className="text-zinc-400">
-                Designed and deployed a personal honeypot to analyze attack patterns 
-                and malicious traffic behavior.
+              <p className="text-zinc-400 mb-4">
+                Self-hosted exploit server for authorized penetration testing. Create and
+                serve custom HTML/JS payloads, capture callbacks, and monitor interactions
+                in real time. Built with FastAPI, PostgreSQL, and WebSockets.
               </p>
+              <a href="https://github.com/tuusername/exploitserver" target="_blank" rel="noopener noreferrer" className="text-emerald-500 hover:underline inline-flex items-center gap-2">
+                View Repository →
+              </a>
             </div>
 
-            <div 
+            {/* Custom Honeypot */}
+            <div
               className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:border-emerald-600 transition hover:shadow-lg hover:shadow-emerald-600/10 hover:scale-[1.02] transform overflow-hidden"
               onMouseEnter={() => unlockSection('proj-3')}
             >
@@ -1177,12 +1182,34 @@ export default function Home() {
                   <p className="font-mono text-zinc-500 text-xs mt-2">hover to decrypt</p>
                 </div>
               </div>
-              
+
+              <h3 className="text-lg font-semibold mb-3">
+                Custom Honeypot Environment
+              </h3>
+              <p className="text-zinc-400">
+                Designed and deployed a personal honeypot to analyze attack patterns
+                and malicious traffic behavior.
+              </p>
+            </div>
+
+            {/* Personal Security Lab */}
+            <div
+              className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:border-emerald-600 transition hover:shadow-lg hover:shadow-emerald-600/10 hover:scale-[1.02] transform overflow-hidden"
+              onMouseEnter={() => unlockSection('proj-4')}
+            >
+              <div className={`absolute inset-0 bg-zinc-950/95 flex items-center justify-center z-10 transition-opacity duration-300 pointer-events-none ${unlockedSections.has('proj-4') ? 'opacity-0' : 'group-hover:opacity-0'}`}>
+                <div className="text-center">
+                  <div className="text-4xl mb-2">🔒</div>
+                  <p className="font-mono text-emerald-500 text-sm">ACCESS RESTRICTED</p>
+                  <p className="font-mono text-zinc-500 text-xs mt-2">hover to decrypt</p>
+                </div>
+              </div>
+
               <h3 className="text-lg font-semibold mb-3">
                 Personal Security Lab
               </h3>
               <p className="text-zinc-400">
-                Built and maintained a private testing environment for web exploitation, 
+                Built and maintained a private testing environment for web exploitation,
                 tool development and vulnerability research.
               </p>
             </div>
@@ -1196,7 +1223,7 @@ export default function Home() {
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 text-zinc-400">
-            <div 
+            <div
               className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:border-emerald-600 transition hover:scale-[1.02] transform overflow-hidden"
               onMouseEnter={() => unlockSection('skill-1')}
             >
@@ -1207,12 +1234,12 @@ export default function Home() {
                   <p className="font-mono text-zinc-500 text-xs mt-2">hover to view</p>
                 </div>
               </div>
-              
+
               <h4 className="font-semibold text-zinc-200 mb-3">Security</h4>
               <p>Burp Suite, Nmap, Nikto, OWASP, Metasploit, Web Pentesting, Vulnerability Assessment</p>
             </div>
 
-            <div 
+            <div
               className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:border-emerald-600 transition hover:scale-[1.02] transform overflow-hidden"
               onMouseEnter={() => unlockSection('skill-2')}
             >
@@ -1223,12 +1250,12 @@ export default function Home() {
                   <p className="font-mono text-zinc-500 text-xs mt-2">hover to view</p>
                 </div>
               </div>
-              
+
               <h4 className="font-semibold text-zinc-200 mb-3">Development</h4>
               <p>Python, Node.js, REST APIs, HTTP, Secure Coding, Backend Development</p>
             </div>
 
-            <div 
+            <div
               className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:border-emerald-600 transition hover:scale-[1.02] transform overflow-hidden"
               onMouseEnter={() => unlockSection('skill-3')}
             >
@@ -1239,7 +1266,7 @@ export default function Home() {
                   <p className="font-mono text-zinc-500 text-xs mt-2">hover to view</p>
                 </div>
               </div>
-              
+
               <h4 className="font-semibold text-zinc-200 mb-3">Systems</h4>
               <p>Linux, MySQL, MongoDB, Virtualization, Network Security, Forensics</p>
             </div>
@@ -1252,7 +1279,7 @@ export default function Home() {
             Volunteering
           </h2>
 
-          <div 
+          <div
             className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:border-emerald-600 transition hover:shadow-lg hover:shadow-emerald-600/10 hover:scale-[1.02] transform overflow-hidden"
             onMouseEnter={() => unlockSection('vol-1')}
           >
@@ -1263,7 +1290,7 @@ export default function Home() {
                 <p className="font-mono text-zinc-500 text-xs mt-2">hover to decrypt</p>
               </div>
             </div>
-            
+
             <h3 className="text-lg font-semibold mb-3">
               Food Bank Operation Kilo & Altius Foundation
             </h3>
@@ -1280,7 +1307,7 @@ export default function Home() {
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <div 
+            <div
               className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:scale-[1.02] transform transition overflow-hidden"
               onMouseEnter={() => unlockSection('lang-1')}
             >
@@ -1291,12 +1318,12 @@ export default function Home() {
                   <p className="font-mono text-zinc-500 text-xs mt-2">hover to view</p>
                 </div>
               </div>
-              
+
               <h4 className="font-semibold text-zinc-200 mb-2">Spanish</h4>
               <p className="text-zinc-400">Native Speaker</p>
             </div>
-            
-            <div 
+
+            <div
               className="group relative bg-zinc-900/80 backdrop-blur-sm p-6 rounded-lg border border-zinc-800 hover:scale-[1.02] transform transition overflow-hidden"
               onMouseEnter={() => unlockSection('lang-2')}
             >
@@ -1307,7 +1334,7 @@ export default function Home() {
                   <p className="font-mono text-zinc-500 text-xs mt-2">hover to view</p>
                 </div>
               </div>
-              
+
               <h4 className="font-semibold text-zinc-200 mb-2">English</h4>
               <p className="text-zinc-400">Professional Working Proficiency</p>
             </div>
