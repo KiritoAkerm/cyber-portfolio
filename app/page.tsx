@@ -1139,7 +1139,7 @@ export default function Home() {
                 reconnaissance and detection of common web vulnerabilities (XSS, SQLi
                 patterns, misconfigurations). Published on GitHub.
               </p>
-              <a href="https://lnkd.in/dRaAnkrt" target="_blank" rel="noopener noreferrer" className="text-emerald-500 hover:underline inline-flex items-center gap-2">
+              <a href="https://github.com/KiritoAkerm/vulnhunter-pro" target="_blank" rel="noopener noreferrer" className="text-emerald-500 hover:underline inline-flex items-center gap-2">
                 View Repository →
               </a>
             </div>
@@ -1165,7 +1165,7 @@ export default function Home() {
                 serve custom HTML/JS payloads, capture callbacks, and monitor interactions
                 in real time. Built with FastAPI, PostgreSQL, and WebSockets.
               </p>
-              <a href="https://github.com/tuusername/exploitserver" target="_blank" rel="noopener noreferrer" className="text-emerald-500 hover:underline inline-flex items-center gap-2">
+              <a href="https://github.com/KiritoAkerm/exploitserver" target="_blank" rel="noopener noreferrer" className="text-emerald-500 hover:underline inline-flex items-center gap-2">
                 View Repository →
               </a>
             </div>
